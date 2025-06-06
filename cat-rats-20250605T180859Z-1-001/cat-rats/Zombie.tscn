@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7rk7nrql7vjq"]
+
+[ext_resource type="Script" uid="uid://dbf5alneeay2e" path="res://sprite.gd" id="1_vrb4v"]
+[ext_resource type="Script" uid="uid://dof6q0u5737j8" path="res://path_follow_2d.gd" id="2_vrb4v"]
+[ext_resource type="Texture2D" uid="uid://5b5xbksq2o3h" path="res://rata prueba.png" id="3_vrb4v"]
+
+[sub_resource type="Curve2D" id="Curve2D_ykpkj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 49, 484, 0, 0, 0, 0, 142, 481, 0, 0, 0, 0, 242, 452, 0, 0, 0, 0, 248, 391, 0, 0, 0, 0, 214, 379, 0, 0, 0, 0, 172, 375, 0, 0, 0, 0, 113, 372, 0, 0, 0, 0, 107, 188, 0, 0, 0, 0, 328, 187, 0, 0, 0, 0, 335, 438, 0, 0, 0, 0, 522, 441, 0, 0, 0, 0, 524, 482, 0, 0, 0, 0, 659, 483, 0, 0, 0, 0, 657, 277, 0, 0, 0, 0, 498, 280, 0, 0, 0, 0, 499, 91, 0, 0, 0, 0, 813, 82, 0, 0, 0, 0, 815, 172, 0, 0, 0, 0, 776, 172, 0, 0, 0, 0, 779, 247, 0, 0, 0, 0, 828, 248, 0, 0, 0, 0, 826, 481)
+}
+point_count = 22
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vrb4v"]
+size = Vector2(31.5372, 31.4997)
+
+[node name="Sprite" type="Node2D"]
+script = ExtResource("1_vrb4v")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_ykpkj")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(49, 484)
+rotation = -0.0322469
+loop = false
+script = ExtResource("2_vrb4v")
+
+[node name="Rata" type="Sprite2D" parent="Path2D/PathFollow2D" groups=["zombie"]]
+position = Vector2(7.87884, -4.30771)
+rotation = 4.7281
+scale = Vector2(1.05931, 0.923748)
+texture = ExtResource("3_vrb4v")
+
+[node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D/Rata"]
+position = Vector2(-4.08315, -0.572418)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Rata/Area2D"]
+position = Vector2(5.76859, -1.04791)
+shape = SubResource("RectangleShape2D_vrb4v")
+
+[node name="ProgressBar" type="ProgressBar" parent="Path2D/PathFollow2D/Rata"]
+offset_right = 4.0
+offset_bottom = 27.0
+min_value = 50.0
+value = 100.0
